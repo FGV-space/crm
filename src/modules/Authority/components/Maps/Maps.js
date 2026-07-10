@@ -1,0 +1,51 @@
+import React from "react";
+import { Map, MapProvider } from 'react-map-gl';
+import DeckGL, { IconLayer } from 'deck.gl';
+import iconAtlas from '../../../../images/location-icon-atlas.png';
+import iconMapping from '../../../../images/location-icon-mapping.json';
+
+const INITIAL_VIEW_STATE = {
+  longitude: 11.50,
+  latitude: 44.00,
+  zoom: 5.5,
+  maxZoom: 20,
+  pitch: 0,
+  bearing: 0
+};
+
+const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN;
+const MAP_STYLE = 'mapbox://styles/velocar/cjxipb9un1tyo1cldhm6zdzod';
+
+export default function Maps(props) {
+  const layers = [
+    new IconLayer({
+      id: 'icon',
+      data,
+      iconAtlas,
+      iconMapping,
+      getIcon: d => 'marker',
+      sizeUnits: 'meters',
+      sizeScale: 2000,
+      sizeMinPixels: 16,
+      pickable: true,
+      opacity: 1,
+      getPosition: d => [d.location.coordinates[1],d.location.coordinates[0]],
+      onClick
+    }),
+  ];
+
+  return (
+    <DeckGL
+      initialViewState={INITIAL_VIEW_STATE}
+      controller={true}
+      layers={layers}
+      ContextProvider={MapProvider}
+    >
+      <Map
+        reuseMaps
+        mapStyle={MAP_STYLE}
+        mapboxAccessToken={MAPBOX_TOKEN}
+      />
+    </DeckGL>
+  );
+}

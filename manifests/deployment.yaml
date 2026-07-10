@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vms-crm
+  namespace: vms
+  labels:
+    app.kubernetes.io/name: vms-crm
+    app.kubernetes.io/component: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vms-crm
+      app.kubernetes.io/component: frontend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vms-crm
+        app.kubernetes.io/component: frontend
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: vms-crm
+      containers:
+        - name: vms-crm
+          image: velocar1/vms-crm:0.59
+          imagePullPolicy: Always
+          env:
+            - name: API_URL
+              value: "https://crm.velocar.it/api"
+            - name: SOCKET_IO
+              value: "https://crm.velocar.it"
+            - name: MAPBOX_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: mapbox
+                  key: token
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /api/utils/liveness-probe
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 3
+            failureThreshold: 2
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - vms-crm
+              topologyKey: "kubernetes.io/hostname"
