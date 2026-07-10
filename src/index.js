@@ -2,16 +2,13 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { fas } from '@fortawesome/pro-solid-svg-icons';
-import { fad } from '@fortawesome/pro-duotone-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { far } from '@fortawesome/pro-regular-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import Vms from './routes';
 import store from './store';
 import './style.scss';
 
-library.add(far, fad, fab, fas);
+library.add(fab);
 
 // Language setup
 import { IntlProvider } from 'react-intl';
