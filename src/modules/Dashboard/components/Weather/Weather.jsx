@@ -7,7 +7,7 @@ import moment from "moment";
 import io from 'socket.io-client';
 import { styled } from '@mui/material/styles';
 
-const API_URL = process.env.SOCKET_IO;
+const API_URL = import.meta.env.SOCKET_IO;
 const socket = io(API_URL, { withCredentials: true });
 
 function mts2kmh(mts) {

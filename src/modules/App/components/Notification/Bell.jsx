@@ -4,7 +4,7 @@ import {fetchNotificationsCount, toggleNotificationArea} from '../../appSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import io from 'socket.io-client';
 
-const API_URL = process.env.SOCKET_IO;
+const API_URL = import.meta.env.SOCKET_IO;
 const socket = io(API_URL, { withCredentials: true });
 
 export default function Bell() {

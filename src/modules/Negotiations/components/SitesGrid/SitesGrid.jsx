@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles';
 import ItemSubmenuButton from '../../../App/components/ItemSubmenuButton/ItemSubmenuButton';
 import { Input } from '../../../App/components/Input/Input';
 
-const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN;
+const MAPBOX_TOKEN = import.meta.env.MAPBOX_TOKEN;
 
 const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'left',

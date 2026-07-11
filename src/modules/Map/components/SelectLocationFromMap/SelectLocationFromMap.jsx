@@ -22,7 +22,7 @@ import { validateCoordinates } from '../../../../util/utils';
 import { styled } from '@mui/material/styles';
 import { Input } from '../../../App/components/Input/Input';
 
-const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN;
+const MAPBOX_TOKEN = import.meta.env.MAPBOX_TOKEN;
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiPaper-root': {

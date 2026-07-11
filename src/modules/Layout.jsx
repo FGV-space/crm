@@ -17,7 +17,7 @@ import { CssBaseline } from '@mui/material';
 import { dark } from './App/themes/darkTheme';
 import { light } from './App/themes/lightTheme';
 
-const API_URL = process.env.SOCKET_IO;
+const API_URL = import.meta.env.SOCKET_IO;
 const socket = io(API_URL, { withCredentials: true });
 
 const StyledHeader = styled(Header)(({ theme }) => ({
