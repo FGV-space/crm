@@ -13,6 +13,17 @@ const initialState = {
 };
 
 export const loginRequest = createAsyncThunk('user/loginRequest', async (data) => {
+
+  if (import.meta.env.DEV) {
+    return {
+      user: {
+        username: data.user.username || 'dev',
+        name: 'Developer',
+      },
+      token: 'dev-token',
+    };
+  }
+
   const response = await client.post('login', data);
 
   return response.data;

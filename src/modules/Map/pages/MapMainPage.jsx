@@ -23,7 +23,7 @@ const MAP_STYLE = 'mapbox://styles/velocar/cjxipb9un1tyo1cldhm6zdzod';
 const MAP_BLUEPRINT = 'mapbox://styles/velocar/cl6rs9hia000h15lbjtrnruq7';
 const MAP_WHITE = 'mapbox://styles/velocar/clgkk5kfn008j01qy2fed41yk';
 const MAP_LAND = 'mapbox://styles/velocar/clhivpbos01g601qugoefchyt'
-const provincesData = require('../provinces.geojson');
+const provincesData = ('../provinces.geojson');
 
 const colorTable = {
   'Bologna': [255, 127, 0],
