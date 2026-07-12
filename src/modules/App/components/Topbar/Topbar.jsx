@@ -7,7 +7,7 @@ import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 
 export default function Topbar() {
   return (
-    <div className={'topbar'}>
+    <div className='topbar'>
       <ul>
         <li>
           <Bell />

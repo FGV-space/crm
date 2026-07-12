@@ -85,6 +85,12 @@ const colorTable = {
   'Vicenza': [129, 16, 124],
 }
 
+const onClick = info => {
+    if (info) {
+      console.log(info);
+    }
+  };
+
 function Map(props) {
   const dispatch = useDispatch();
   const data = useSelector(state => state.dashboard.markers);
@@ -130,12 +136,6 @@ function Map(props) {
     dispatch(closeAll());
     goToVelocar();
   }, [dispatch]);
-
-  const onClick = info => {
-    if (info) {
-      console.log(info);
-    }
-  };
 
   const goToVelocar = useCallback(() => {
     setInitialViewState({

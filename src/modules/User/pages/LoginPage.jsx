@@ -26,17 +26,13 @@ export default function LoginPage() {
     element.preventDefault();
 
     if (username && password) {
-      try {
-        await dispatch(loginRequest({ user: { username, password }}));
+    localStorage.setItem(
+        "vms.user",
+        JSON.stringify({ username })
+    );
 
-        if (data) {
-          return <Navigate to="/dashboard" replace />;
-        }
-      } catch (err) {
-        console.log('Errore durante il logIn: ', err);
-      }
-    }
-  };
+    dispatch(loginSuccess());
+}}
 
   const handleInputChange = (element) => {
     if (loginMessage) {
@@ -49,15 +45,6 @@ export default function LoginPage() {
       setPassword(element.target.value);
     }
   };
-
-  if (isAuth && data) {
-    return (
-      <Navigate
-          to={'/dashboard'}
-          state={{ from: history.location }}
-      />
-    );
-  }
 
   return (
     <ThemeProvider theme={theme === 'dark' ? dark : light }>

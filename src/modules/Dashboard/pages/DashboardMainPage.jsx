@@ -43,6 +43,7 @@ class DashboardMainPage extends Component {
   render() {
     return (
       <div>
+        <h1></h1>
         <Weather />
         <ResponsiveGridLayout
           className={'dashboard'}
